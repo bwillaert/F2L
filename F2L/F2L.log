@@ -1,0 +1,13 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1824 -DL -O11111114 -fo32 -N"C:\Users\b\Documents\GitHub\MD\F2L\F2L.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"C:\Users\b\Documents\GitHub\MD\F2L\" "F2L.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_ADC.mcl" "__Lib_UART_c45.mcl"	 
+hint: 0	1139	Available RAM: 240 [bytes], Available ROM: 4096 [bytes]	 
+diagnostics: 0	126	All files Preprocessed in 30 ms	 
+diagnostics: 0	122	Compilation Started	F2L.c
+warning: 291	1505	Suspicious pointer conversion	F2L.c
+diagnostics: 399	123	Compiled Successfully	F2L.c
+diagnostics: 0	127	All files Compiled in 50 ms	 
+hint: 0	1144	Used RAM (bytes): 43 (18%)  Free RAM (bytes): 197 (82%)	Used RAM (bytes): 43 (18%)  Free RAM (bytes): 197 (82%)
+hint: 0	1144	Used ROM (program words): 708 (17%)  Free ROM (program words): 3388 (83%)	Used ROM (program words): 708 (17%)  Free ROM (program words): 3388 (83%)
+diagnostics: 0	125	Project Linked Successfully	F2L.mcppi
+diagnostics: 0	128	Linked in 50 ms	 
+diagnostics: 0	129	Project 'F2L.mcppi' completed: 180 ms	 
+diagnostics: 0	103	Finished successfully: 29 Aug 2018, 20:33:42	F2L.mcppi

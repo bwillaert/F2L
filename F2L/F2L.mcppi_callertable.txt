@@ -1,0 +1,19 @@
+main
+	UART1_Init
+	sendstring
+		sendchar
+			UART1_Tx_Idle
+			UART1_Write
+	ADC_Read
+		ADC_Init
+		ADC_Get_Sample
+			Delay_22us
+	sendhex
+		sendchar
+			UART1_Tx_Idle
+			UART1_Write
+	sendchar
+		UART1_Tx_Idle
+		UART1_Write
+	absvalue
+interrupt
