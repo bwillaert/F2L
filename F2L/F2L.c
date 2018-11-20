@@ -13,9 +13,9 @@
      Oscillator:      Internal, 32.0000 MHz
      
  * Conversion:
-     ADC value 0...1024 = number of pulses in 256 ms
-     Frequency = (1/256) * 1024 = 4 kHz
-     V = 5/4096 * F[Hz]  --> 1000 Hz = 1.25V
+     ADC value 0...1024 = number of pulses in 128 ms
+     Frequency = (1/128) * 1024 = 8 kHz
+     V = 5/8000* F[Hz]  --> 1000 Hz = 0.625 V
 
 
  */
@@ -23,7 +23,7 @@
 //
 // constant values
 //
-#define RS_OUTPUT
+//#define RS_OUTPUT
 
 // I/O pins
 #define LED1                LATA.LATA5            // LED1 OUT     pin 2 = RA5
