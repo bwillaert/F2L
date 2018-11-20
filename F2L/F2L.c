@@ -30,6 +30,7 @@
 #define LED2                LATA.LATA4            // LED2 OUT     pin 3 = RA4
 #define LED3                LATC.LATC5            // LED3 OUT     pin 5 = RC5
 #define LED4                LATC.LATC4            // LED4 OUT     pin 6 = RC4 = RS TX
+#define LED_SOUND           LATC.LATC3            // LED_SOUND    pin 7 = RC3
 #define MODE_EQUAL          PORTA.RA3             // IN   mode switch pin 4
 
 /*
@@ -191,7 +192,7 @@ void main()
     PORTA.RA0 = 1;
     TRISA.TRISA1 = IN;  // PIN 12 = AN1  = potmeter2
     PORTA.RA1 = 1;
-    TRISA.TRISA2 = OUT /*IN*/;  // PIN 11 = AN2  = potmeter3 = COMP1 OUT    xxxxxxxxxxx
+    TRISA.TRISA2 = IN;  // PIN 11 = AN2  = potmeter3 = COMP1 OUT    xxxxxxxxxxx
     PORTA.RA2 = 1;
     TRISA.TRISA3 = IN;  // PIN 4 = MODE switch
     PORTA.RA2 = 1;
@@ -207,7 +208,7 @@ void main()
     PORTC.RC1 = 1;
     TRISC.TRISC2 = IN;  // PIN 8 = NA = C12IN2-
     PORTC.RC2 = 1;
-    TRISC.TRISC3 = OUT; // PIN 7 = NA
+    TRISC.TRISC3 = OUT; // PIN 7 = LED_SOUND
     PORTC.RC3 = 1;
     TRISC.TRISC4 = OUT; // PIN 6 = LED4
     PORTC.RC4 = 1;
@@ -217,7 +218,7 @@ void main()
     // Analog input pins
     ANSELA.ANSA0 = 1;     // potmeter1
     ANSELA.ANSA1 = 1;     // potmeter2
-    // ANSELA.ANSA2 = 1;     // potmeter3 - COMP1 out  xxxxxxxxxxxxxx
+    ANSELA.ANSA2 = 1;     // potmeter3 - COMP1 out  xxxxxxxxxxxxxx
     ANSELC.ANSC0 = 1;     // potmeter4
     ANSELC.ANSC1 = 1;     //  RC1 = C12IN1-
 
@@ -240,7 +241,7 @@ void main()
     DACCON0.DACPSS0 = 0;           // VDD
     DACCON0.DACPSS1 = 0;           // VDD
     DACCON0.DACNSS = 0;            // GND
-    DACCON1 = 16;                  // 5V / 32 * 16 = 2.5V
+    DACCON1 = 2;                  // 5V / 32 * 2 = 0.3V
 
     // ADC input
     ADCON0.ADON = 1;            //  ADC on
@@ -279,11 +280,13 @@ void main()
      LED2 = ON;
      LED3 = ON;
      LED4 = ON;
+     LED_SOUND = ON;
      Delay_ms(500);
      LED1 = OFF;
      LED2 = OFF;
      LED3 = OFF;
      LED4 = OFF;
+     LED_SOUND = OFF;
 
 
 #ifdef RS_OUTPUT
@@ -313,10 +316,20 @@ void main()
             pulse_count = 1024;
          }
          
+         // Set confidence LED  = sound signal presence
+         if (pulse_count)
+         {
+            LED_SOUND = ON;
+         }
+         else
+         {
+            LED_SOUND = OFF;
+         }
+         
          // Compare it with the potmeter values
          potmeter1 = ADC_Read(0);
          potmeter2 = ADC_Read(1);
-         // potmeter3 = ADC_Read(2);   xxxxxxxxxx
+         potmeter3 = ADC_Read(2);   //xxxxxxxxxx
          potmeter4 = ADC_Read(4);
          
          sendhex (potmeter1, LINE_NONE);
