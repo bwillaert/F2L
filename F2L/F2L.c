@@ -14,8 +14,8 @@
      
  * Conversion:
      ADC value 0...1024 = number of pulses in 128 ms
-     Frequency = (1/128) * 1024 = 8 kHz
-     V = 5/8000* F[Hz]  --> 1000 Hz = 0.625 V
+     Frequency = (1/128) * 1024 * 2 = 4 kHz
+     V = 5/4000* F[Hz]  --> 1000 Hz = 1.250 V
 
 
  */
@@ -51,7 +51,7 @@
 // RS232 RX pin          RC5 p5
 
 #define SAMPLE_TIME_MS     128             // Pulse count interval
-#define SAMPLE_TOLERANCE   20              // Difference between pulse count and potmeter value
+#define SAMPLE_TOLERANCE   10              // Difference between pulse count and potmeter value
 
 #define TRUE 1
 #define FALSE 0
@@ -311,6 +311,7 @@ void main()
          PIE2.C1IE = 0;
 
          // We have a resulting pulse count
+         pulse_count <= 1; // pulse count *2 for 4 kHz full scale
          if (pulse_count > 1024)
          {
             pulse_count = 1024;
