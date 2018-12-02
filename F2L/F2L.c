@@ -311,7 +311,7 @@ void main()
          PIE2.C1IE = 0;
 
          // We have a resulting pulse count
-         pulse_count <= 1; // pulse count *2 for 4 kHz full scale
+         pulse_count <<= 1; // pulse count *2 for 4 kHz full scale
          if (pulse_count > 1024)
          {
             pulse_count = 1024;
